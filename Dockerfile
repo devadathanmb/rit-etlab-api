@@ -10,4 +10,4 @@ EXPOSE 8000
 
 ENV FLASK_ENV=production
 
-CMD ["gunicorn", "-c", "gunicorn_config.py", "run:app"]
+CMD ["gunicorn", "-c", "gunicorn_config.py", "-b", "0.0.0.0:8000", "run:app"]
