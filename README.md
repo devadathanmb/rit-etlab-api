@@ -7,4 +7,8 @@ This will act as an easy to use API for [RIT ETLAB Portal](https://rit.etlab.in/
 - [x] Login
 - [x] Logout
 - [x] Fetch basic profile details
-- [ ]  Fetch attendance details
+- [x] Fetch basic attendance details
+- [x] Fetch timetable
+- [] Fetch present dates
+- [] Fetch absent dates
+- [] Fetch assignment info
