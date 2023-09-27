@@ -9,6 +9,7 @@ This will act as an easy to use API for [RIT ETLAB Portal](https://rit.etlab.in/
 - [x] Fetch basic profile details
 - [x] Fetch basic attendance details
 - [x] Fetch timetable
-- [] Fetch present dates
-- [] Fetch absent dates
-- [] Fetch assignment info
+- [ ] Fetch present dates
+- [ ] Fetch absent dates
+- [ ] Fetch assignment info
+- [ ] Add swagger/postman docs
