@@ -12,4 +12,4 @@ This will act as an easy to use API for [RIT ETLAB Portal](https://rit.etlab.in/
 - [ ] Fetch present dates
 - [ ] Fetch absent dates
 - [ ] Fetch assignment info
-- [ ] Add swagger/postman docs
+- [x] Add swagger/postman docs
