@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 import requests
 from config import Config
 from app.utils.cookie_required import require_cookie_auth
+from flasgger import swag_from
+from app.docs.swagger import swagger_timetable_spec
 import csv
 
 bp = Blueprint("timetable", __name__, url_prefix="/api")
@@ -9,6 +11,7 @@ bp = Blueprint("timetable", __name__, url_prefix="/api")
 
 @bp.route("/timetable", methods=["GET"])
 @require_cookie_auth
+@swag_from(swagger_timetable_spec)
 def timetable():
     headers = {
         "User-Agent": Config.USER_AGENT,

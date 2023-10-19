@@ -3,12 +3,15 @@ import requests
 from config import Config
 from bs4 import BeautifulSoup
 from app.utils.cookie_required import require_cookie_auth
+from flasgger import swag_from
+from app.docs.swagger import swagger_profile_spec
 
 bp = Blueprint("profile", __name__, url_prefix="/api")
 
 
 @bp.route("/profile", methods=["GET"])
 @require_cookie_auth
+@swag_from(swagger_profile_spec)
 def profile():
     headers = {
         "User-Agent": Config.USER_AGENT,

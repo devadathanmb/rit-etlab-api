@@ -3,12 +3,15 @@ import requests
 from config import Config
 from bs4 import BeautifulSoup
 from app.utils.cookie_required import require_cookie_auth
+from flasgger import swag_from
 import re
+from app.docs.swagger import swagger_attendance_spec
 
 bp = Blueprint("attendance", __name__, url_prefix="/api")
 
 
 @bp.route("/attendance", methods=["GET"])
+@swag_from(swagger_attendance_spec)
 @require_cookie_auth
 def attendance():
     semester = request.args.get("semester")
