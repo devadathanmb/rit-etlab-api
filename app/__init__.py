@@ -7,7 +7,7 @@ def create_app():
 
     app.config.from_object(Config)
 
-    from app.routes import status, login, profile, logout, attendance, timetable
+    from app.routes import status, login, profile, logout, attendance, timetable, present
 
     app.register_blueprint(status.bp)
     app.register_blueprint(login.bp)
@@ -15,5 +15,6 @@ def create_app():
     app.register_blueprint(logout.bp)
     app.register_blueprint(attendance.bp)
     app.register_blueprint(timetable.bp)
+    app.register_blueprint(present.bp)
 
     return app
