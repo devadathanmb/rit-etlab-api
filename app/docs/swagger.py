@@ -232,6 +232,118 @@ swagger_status_spec = {
     },
 }
 
+swagger_present_spec = {
+    "parameters": [
+        {
+            "name": "month",
+            "in": "query",
+            "type": "integer",
+            "required": True,
+            "description": "Month (1-12)",
+        },
+        {
+            "name": "semester",
+            "in": "query",
+            "type": "integer",
+            "required": True,
+            "description": "Semester (1-8)",
+        },
+        {
+            "name": "year",
+            "in": "query",
+            "type": "integer",
+            "required": True,
+            "description": "Year",
+        },
+        {
+            "name": "Cookie",
+            "in": "header",
+            "type": "string",
+            "required": True,
+            "description": "Session cookie (RITSESSIONID)",
+        },
+    ],
+    "responses": {
+        200: {
+            "description": "Successfully fetched data",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "message": {"type": "string", "description": "Success message"},
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "month": {"type": "string", "description": "Month"},
+                            "month_num": {
+                                "type": "string",
+                                "description": "Month number",
+                            },
+                            "semester": {"type": "string", "description": "Semester"},
+                            "semester_num": {
+                                "type": "string",
+                                "description": "Semester number",
+                            },
+                            "year": {"type": "string", "description": "Year"},
+                            "present_hours": {
+                                "type": "array",
+                                "description": "List of present hours data",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "day": {
+                                            "type": "integer",
+                                            "description": "Day of the month",
+                                        },
+                                        "hour": {
+                                            "type": "integer",
+                                            "description": "Hour",
+                                        },
+                                        "subject_code": {
+                                            "type": "string",
+                                            "description": "Subject code",
+                                        },
+                                        "subject_name": {
+                                            "type": "string",
+                                            "description": "Subject name",
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        400: {
+            "description": "Invalid parameters",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "message": {"type": "string", "description": "Error message"}
+                },
+            },
+        },
+        401: {
+            "description": "Cookie expired. Please login again.",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "message": {"type": "string", "description": "Error message"}
+                },
+            },
+        },
+        500: {
+            "description": "Failed to fetch or parse data",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "message": {"type": "string", "description": "Error message"}
+                },
+            },
+        },
+    },
+}
+
 swagger_timetable_spec = {
     "parameters": [
         {
