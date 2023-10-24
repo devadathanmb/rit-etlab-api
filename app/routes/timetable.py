@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 import requests
 from config import Config
-from app.utils.cookie_required import require_cookie_auth
+from app.utils.token_required import require_token_auth
 from flasgger import swag_from
 from app.docs.swagger import swagger_timetable_spec
 import csv
@@ -10,14 +10,14 @@ bp = Blueprint("timetable", __name__, url_prefix="/api")
 
 
 @bp.route("/timetable", methods=["GET"])
-@require_cookie_auth
+@require_token_auth
 @swag_from(swagger_timetable_spec)
 def timetable():
     headers = {
         "User-Agent": Config.USER_AGENT,
     }
 
-    cookie = {"RITSESSIONID": request.headers["Cookie"]}
+    cookie = {"RITSESSIONID": request.headers["Authorization"]}
     response = requests.get(
         f"{Config.BASE_URL}/student/timetable?format=csv&yt0=",
         headers=headers,

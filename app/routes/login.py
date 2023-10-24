@@ -39,4 +39,4 @@ def login():
         return jsonify({"message": "Invalid username or password"}), 401
     cookie = session.cookies.get_dict()["RITSESSIONID"]
 
-    return jsonify({"message": "Login successful", "cookie": cookie}), 200
+    return jsonify({"message": "Login successful", "token": cookie}), 200

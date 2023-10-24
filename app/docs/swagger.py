@@ -8,11 +8,11 @@ swagger_attendance_spec = {
             "description": "Semester for which attendance is requested",
         },
         {
-            "name": "Cookie",
+            "name": "Authorization",
             "in": "header",
             "type": "string",
             "required": True,
-            "description": "Session cookie (RITSESSIONID)",
+            "description": "Authorization token to access routes",
         },
     ],
     "responses": {
@@ -54,7 +54,6 @@ swagger_attendance_spec = {
                         "present_hours": "16",
                         "total_hours": "20",
                     },
-                    # ... Repeat for other subjects
                     "name": "DEVADATHAN M B",
                     "roll_no": "26",
                     "total_hours": "52",
@@ -110,9 +109,9 @@ swagger_login_spec = {
                         "type": "string",
                         "description": "Login successful message",
                     },
-                    "cookie": {
+                    "token": {
                         "type": "string",
-                        "description": "Session cookie (RITSESSIONID)",
+                        "description": "Authorization token to access routes",
                     },
                 },
             },
@@ -131,11 +130,11 @@ swagger_login_spec = {
 swagger_logout_spec = {
     "parameters": [
         {
-            "name": "Cookie",
+            "name": "Authorization",
             "in": "header",
             "type": "string",
             "required": True,
-            "description": "Session cookie (RITSESSIONID)",
+            "description": "Authorization token to access routes",
         }
     ],
     "responses": {
@@ -174,11 +173,11 @@ swagger_logout_spec = {
 swagger_profile_spec = {
     "parameters": [
         {
-            "name": "Cookie",
+            "name": "Authorization",
             "in": "header",
             "type": "string",
             "required": True,
-            "description": "Session cookie (RITSESSIONID)",
+            "description": "Authorization token to access routes",
         }
     ],
     "responses": {
@@ -207,7 +206,7 @@ swagger_profile_spec = {
             },
         },
         401: {
-            "description": "Unauthorized. Cookie expired. Please login again.",
+            "description": "Unauthorized. Authorization token expired. Please login again.",
             "schema": {
                 "type": "object",
                 "properties": {
@@ -256,11 +255,11 @@ swagger_present_spec = {
             "description": "Year",
         },
         {
-            "name": "Cookie",
+            "name": "Authorization",
             "in": "header",
             "type": "string",
             "required": True,
-            "description": "Session cookie (RITSESSIONID)",
+            "description": "Authorization token to access routes",
         },
     ],
     "responses": {
@@ -324,7 +323,7 @@ swagger_present_spec = {
             },
         },
         401: {
-            "description": "Cookie expired. Please login again.",
+            "description": "Authorization token expired. Please login again.",
             "schema": {
                 "type": "object",
                 "properties": {
@@ -347,11 +346,11 @@ swagger_present_spec = {
 swagger_timetable_spec = {
     "parameters": [
         {
-            "name": "Cookie",
+            "name": "Authorization",
             "in": "header",
             "type": "string",
             "required": True,
-            "description": "Session cookie (RITSESSIONID)",
+            "description": "Authorization token to access routes",
         }
     ],
     "responses": {
@@ -400,7 +399,7 @@ swagger_timetable_spec = {
             },
         },
         401: {
-            "description": "Unauthorized. Cookie expired. Please login again.",
+            "description": "Unauthorized. Authorization token expired. Please login again.",
             "schema": {
                 "type": "object",
                 "properties": {
@@ -460,11 +459,11 @@ swagger_absent_spec = {
             "description": "Year",
         },
         {
-            "name": "Cookie",
+            "name": "Authorization",
             "in": "header",
             "type": "string",
             "required": True,
-            "description": "Session cookie (RITSESSIONID)",
+            "description": "Authorization token to access routes",
         },
     ],
     "responses": {
@@ -528,7 +527,7 @@ swagger_absent_spec = {
             },
         },
         401: {
-            "description": "Cookie expired. Please login again.",
+            "description": "Authorization token expired. Please login again.",
             "schema": {
                 "type": "object",
                 "properties": {

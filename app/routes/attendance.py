@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 import requests
 from config import Config
 from bs4 import BeautifulSoup
-from app.utils.cookie_required import require_cookie_auth
+from app.utils.token_required import require_token_auth
 from flasgger import swag_from
 import re
 from app.docs.swagger import swagger_attendance_spec
@@ -12,7 +12,7 @@ bp = Blueprint("attendance", __name__, url_prefix="/api")
 
 @bp.route("/attendance", methods=["GET"])
 @swag_from(swagger_attendance_spec)
-@require_cookie_auth
+@require_token_auth
 def attendance():
     semester = request.args.get("semester")
     if not semester:
@@ -34,7 +34,7 @@ def attendance():
     headers = {
         "User-Agent": Config.USER_AGENT,
     }
-    cookie = {"RITSESSIONID": request.headers["Cookie"]}
+    cookie = {"RITSESSIONID": request.headers["Authorization"]}
     response = requests.get(
         f"{Config.BASE_URL}/ktuacademics/student/viewattendancesubject/{semester}",
         headers=headers,
@@ -42,7 +42,7 @@ def attendance():
     )
     soup = BeautifulSoup(response.text, "html.parser")
     if "login" in soup.title.string.lower():
-        return jsonify({"message": "Cookie expired. Please login again."}), 401
+        return jsonify({"message": "Token expired. Please login again."}), 401
 
     response_body = {}
     table = soup.find("table", class_="items")

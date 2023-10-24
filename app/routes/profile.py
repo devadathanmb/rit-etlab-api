@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 import requests
 from config import Config
 from bs4 import BeautifulSoup
-from app.utils.cookie_required import require_cookie_auth
+from app.utils.token_required import require_token_auth
 from flasgger import swag_from
 from app.docs.swagger import swagger_profile_spec
 
@@ -10,13 +10,13 @@ bp = Blueprint("profile", __name__, url_prefix="/api")
 
 
 @bp.route("/profile", methods=["GET"])
-@require_cookie_auth
+@require_token_auth
 @swag_from(swagger_profile_spec)
 def profile():
     headers = {
         "User-Agent": Config.USER_AGENT,
     }
-    cookie = {"RITSESSIONID": request.headers["Cookie"]}
+    cookie = {"RITSESSIONID": request.headers["Authorization"]}
     response = requests.get(
         f"{Config.BASE_URL}/student/profile",
         headers=headers,
@@ -24,7 +24,7 @@ def profile():
     )
     soup = BeautifulSoup(response.text, "html.parser")
     if "login" in soup.title.string.lower():
-        return jsonify({"message": "Cookie expired. Please login again."}), 401
+        return jsonify({"message": "Token expired. Please login again."}), 401
 
     name = soup.find("th", string="Name").find_next("td").get_text(strip=True)
     dob = soup.find("th", string="Date of Birth").find_next("td").get_text(strip=True)

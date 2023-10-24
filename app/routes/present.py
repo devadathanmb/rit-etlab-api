@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 import requests
 from config import Config
 from bs4 import BeautifulSoup
-from app.utils.cookie_required import require_cookie_auth
+from app.utils.token_required import require_token_auth
 from flasgger import swag_from
 from app.docs.swagger import swagger_present_spec
 
@@ -10,7 +10,7 @@ bp = Blueprint("present", __name__, url_prefix="/api")
 
 
 @bp.route("/present", methods=["GET"])
-@require_cookie_auth
+@require_token_auth
 @swag_from(swagger_present_spec)
 def present():
     try:
@@ -30,7 +30,7 @@ def present():
         "User-Agent": Config.USER_AGENT,
     }
 
-    cookie = {"RITSESSIONID": request.headers["Cookie"]}
+    cookie = {"RITSESSIONID": request.headers["Authorization"]}
     payload = {
         "month": month,
         "semester": (8 + semester),
@@ -47,7 +47,7 @@ def present():
 
     soup = BeautifulSoup(response.text, "html.parser")
     if "login" in soup.title.string.lower():
-        return jsonify({"message": "Cookie expired. Please login again."}), 401
+        return jsonify({"message": "Token expired. Please login again."}), 401
 
     try:
         semester_element = soup.find("select", {"name": "semester"}).find(
