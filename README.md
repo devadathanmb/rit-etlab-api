@@ -108,26 +108,21 @@ Unofficial API for accessing useful data for students from the [RIT Etlab portal
 
 For detailed information on API endpoints and usage, refer to the [Swagger Documentation](https://rit-etlab-api.onrender.com/apidocs).
 
-
 ## Known Issues
 
 - The API relies on web scraping and may encounter issues if the structure of the RIT Etlab portal changes.
 
-
 ## Deployment
 
-The API is deployed at **https://rit-etlab-api.onrender.com**. Visit the deployment for live usage.
-
+The API is deployed at **https://rit-etlab-api.onrender.com/apidocs**. Visit the deployment for live usage.
 
 ### Availability
 
 Monitor the API's availability in real-time using [Uptime Robot Status Page](https://stats.uptimerobot.com/pplYnfQOZQ).
 
-
 ## Contributing
 
 Feel free to contribute to the development of this API. Fork the repository, make your changes, and submit a pull request.
-
 
 ## License
 
