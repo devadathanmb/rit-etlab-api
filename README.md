@@ -2,7 +2,11 @@
 
 Unofficial API for accessing useful data for students from the [RIT Etlab portal](https://rit.etlab.in/user/login). This API allows you to perform actions such as login, logout, view attendance, access timetable, retrieve basic profile information, and more.
 
-**Note:** This API relies on web scraping techniques and may be subject to potential bugs if the structure of the RIT Etlab portal changes.
+> [!NOTE]
+> This API relies on web scraping techniques and may be subject to potential bugs if the structure of the RIT Etlab portal changes.
+
+> [!TIP]
+> Even though this project was made specifically for [RIT Etlab portal](https://rit.etlab.in/user/login), this project could be used for any **Etlab** implementations by making required changes to the `BASE_URL` and `COOKIE_KEY` present in `config.py`
 
 ## Table of Contents
 
@@ -36,13 +40,13 @@ Unofficial API for accessing useful data for students from the [RIT Etlab portal
 2. Clone the repository:
 
    ```bash
-   git clone https://github.com/devadathanmb/rit-etlab-wrapperapi.git
+   git clone https://github.com/devadathanmb/rit-etlab-api.git
    ```
 
 3. Navigate to the project directory:
 
    ```bash
-   cd rit-etlab-wrapperapi/
+   cd rit-etlab-api/
    ```
 
 4. Build and run the docker container
@@ -62,23 +66,21 @@ Unofficial API for accessing useful data for students from the [RIT Etlab portal
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/devadathanmb/rit-etlab-wrapperapi.git
+   git clone https://github.com/devadathanmb/rit-etlab-api.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd rit-etlab-wrapperapi
+   cd rit-etlab-api
    ```
 
-3. Create and activate a virtual environment:
+3. Create and activate a virtual environment (optional):
 
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
-
-   This isolates the dependencies for the project.
 
 4. Install dependencies:
 
@@ -93,14 +95,6 @@ Unofficial API for accessing useful data for students from the [RIT Etlab portal
    ```
 
    The API will be accessible at `http://127.0.0.1:5000/` by default.
-
-6. To deactivate the virtual environment:
-
-   ```bash
-   deactivate
-   ```
-
-   This step is optional but recommended to exit the virtual environment.
 
 ---
 
