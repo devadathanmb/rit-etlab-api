@@ -1,10 +1,11 @@
-from flask import Blueprint, jsonify, request
 import requests
-from config import Config
 from bs4 import BeautifulSoup
-from app.utils.token_required import require_token_auth
 from flasgger import swag_from
+from flask import Blueprint, jsonify, request
+
 from app.docs.swagger import swagger_present_spec
+from app.utils.token_required import require_token_auth
+from config import Config
 
 bp = Blueprint("present", __name__, url_prefix="/api")
 
@@ -30,7 +31,7 @@ def present():
         "User-Agent": Config.USER_AGENT,
     }
 
-    cookie = {"RITSESSIONID": request.headers["Authorization"]}
+    cookie = {Config.COOKIE_KEY: request.headers["Authorization"]}
     payload = {
         "month": month,
         "semester": (8 + semester),

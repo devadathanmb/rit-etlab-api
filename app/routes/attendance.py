@@ -1,11 +1,13 @@
-from flask import Blueprint, jsonify, request
-import requests
-from config import Config
-from bs4 import BeautifulSoup
-from app.utils.token_required import require_token_auth
-from flasgger import swag_from
 import re
+
+import requests
+from bs4 import BeautifulSoup
+from flasgger import swag_from
+from flask import Blueprint, jsonify, request
+
 from app.docs.swagger import swagger_attendance_spec
+from app.utils.token_required import require_token_auth
+from config import Config
 
 bp = Blueprint("attendance", __name__, url_prefix="/api")
 
@@ -34,7 +36,7 @@ def attendance():
     headers = {
         "User-Agent": Config.USER_AGENT,
     }
-    cookie = {"RITSESSIONID": request.headers["Authorization"]}
+    cookie = {Config.COOKIE_KEY: request.headers["Authorization"]}
     response = requests.get(
         f"{Config.BASE_URL}/ktuacademics/student/viewattendancesubject/{semester}",
         headers=headers,

@@ -1,9 +1,10 @@
-from flask import Blueprint, jsonify, request
 import requests
-from config import Config
 from bs4 import BeautifulSoup
 from flasgger import swag_from
+from flask import Blueprint, jsonify, request
+
 from app.docs.swagger import swagger_login_spec
+from config import Config
 
 bp = Blueprint("login", __name__, url_prefix="/api")
 session = requests.Session()
@@ -37,6 +38,6 @@ def login():
     title = soup.find("title").text
     if "login" in title.lower():
         return jsonify({"message": "Invalid username or password"}), 401
-    cookie = session.cookies.get_dict()["RITSESSIONID"]
+    cookie = session.cookies.get_dict()[Config.COOKIE_KEY]
 
     return jsonify({"message": "Login successful", "token": cookie}), 200

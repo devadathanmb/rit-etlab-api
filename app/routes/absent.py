@@ -1,9 +1,10 @@
-from flask import Blueprint, jsonify, request
 import requests
-from config import Config
 from bs4 import BeautifulSoup
-from app.utils.token_required import require_token_auth
 from flasgger import swag_from
+from flask import Blueprint, jsonify, request
+
+from app.utils.token_required import require_token_auth
+from config import Config
 
 bp = Blueprint("absent", __name__, url_prefix="/api")
 
@@ -28,7 +29,7 @@ def absent():
         "User-Agent": Config.USER_AGENT,
     }
 
-    cookie = {"RITSESSIONID": request.headers["Authorization"]}
+    cookie = {Config.COOKIE_KEY: request.headers["Authorization"]}
     payload = {
         "month": month,
         "semester": (8 + semester),
